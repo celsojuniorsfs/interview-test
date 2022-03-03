@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <form>
+        <input
+          type="text"
+          id="produto1"
+          class="lista-produto"
+          value="Camiseta Básica"
+        />
+        <select id="select-produto1" class="select-produto">
+          <option>-</option>
+        </select>
+
+        <input
+          type="text"
+          id="produto2"
+          class="lista-produto"
+          value="Bermuda Lisa"
+        />
+        <select id="select-produto2" class="select-produto">
+          <option>-</option>
+        </select>
+
+        <input type="text" id="produto3" class="lista-produto" value="Tenis" />
+        <select id="select-produto3" class="select-produto">
+          <option>-</option>
+        </select>
+
+        <select id="example" class="example">
+          <option>-</option>
+        </select>
+      </form>
+    </div>
+
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+    ></script>
+
+    <script type="text/javascript">
+      function getProdutos() {
+        $.get("testeonline.ts/api/cores-disponíveis", function (data) {
+          const selectProduto1 = $("#select-produto1");
+          const selectProduto2 = $("#select-produto2");
+          const selectProduto3 = $("#select-produto3");
+
+          if (selectProduto1.prop) {
+            var options1 = selectProduto1.prop("options");
+          } else {
+            var options1 = selectProduto1.attr("options");
+          }
+
+          if (selectProduto2.prop) {
+            var options2 = selectProduto2.prop("options");
+          } else {
+            var options2 = selectProduto2.attr("options");
+          }
+
+          if (selectProduto3.prop) {
+            var options3 = selectProduto3.prop("options");
+          } else {
+            var options3 = selectProduto3.attr("options");
+          }
+
+          $("option", selectProduto1).remove();
+          $("option", selectProduto2).remove();
+          $("option", selectProduto3).remove();
+
+          $.each(cores["cores"], function (val, text) {
+            options1[options1.length] = new Option(text, val);
+            options2[options2.length] = new Option(text, val);
+            options3[options3.length] = new Option(text, val);
+          });
+        });
+      }
+
+      getProdutos();
+    </script>
+  </body>
+</html>
