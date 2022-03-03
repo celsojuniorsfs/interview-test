@@ -68,3 +68,22 @@ Faça uma consulta SQL que retorne as seguintes informações:
  nome fornecedor
  fornecedor id
 */
+
+
+select 
+m.material_id, 
+m.descricao, 
+m.unidade,
+e.material_entrada_marca,
+e.material_entrada_valor_compra,
+e.material_entrada_valor_venda,
+e.material_entrada_quantidade,
+e.material_entrada_data,
+l.lote,
+l.validade,
+f.nome,
+f.fornecedor_id
+from material m
+inner join material_entrada e on e.material_entrada_id = m.material_id
+inner join material_lote l on l.material_id = m.material_id and e.material_entrada_id = l.material_entrada_id
+inner join fornecedor f on f.fornecedor_id = e.fornecedor_id;
