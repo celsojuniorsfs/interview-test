@@ -1,0 +1,63 @@
+<!--
+Um sistema de chamados acabou de ser implementado e no primeiro dia de uso 
+percebeu-se que ao abrir o chamado de número 10 os dados que apareciam eram do chamado de número 8. 
+Considere o código abaixo faça a correção e explique em suas palavras o motivo de tal comportamento.
+
+[...]
+<div> Chamado numero 008 - Instalar impressora </div>
+<button onclick="abrirDadosChamadoId(008)">Ver dados do chamado</button>
+
+<div> Chamado numero 009 - Computador sem rede </div>
+<button onclick="abrirDadosChamadoId(009)">Ver dados do chamado</button>
+
+<div> Chamado numero 010 - Instalar o AutoCAD </div>
+<button onclick="abrirDadosChamadoId(010)">Ver dados do chamado</button>
+[...]
+
+function abrirDadosChamadoId(id){
+    $.ajax({
+        url:"sistemachamados.ts/dados/"+id+"/",
+        success: function(a){
+            openModal(a);
+        }
+    });
+}
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+    ></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div>Chamado numero 008 - Instalar impressora</div>
+    <button onclick="abrirDadosChamadoId(008)">Ver dados do chamado</button>
+
+    <div>Chamado numero 009 - Computador sem rede</div>
+    <button onclick="abrirDadosChamadoId(009)">Ver dados do chamado</button>
+
+    <div>Chamado numero 010 - Instalar o AutoCAD</div>
+    <button onclick="abrirDadosChamadoId(010)">Ver dados do chamado</button>
+
+    <script type="text/javascript">
+      function abrirDadosChamadoId(id) {
+        $.ajax({
+          url: "sistemachamados.ts/dados/" + id + "/",
+          success: function (a) {
+            openModal(a);
+          },
+        });
+      }
+
+      //Os dados que aparece é o chamado de numero 8,
+      //porque em Javascript 010 é literal octal e converte para 8 em literal decimal
+    </script>
+  </body>
+</html>
